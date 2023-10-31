@@ -37,8 +37,12 @@ def clean_date_of_publication(books):
 
 
 def clean_place_of_publication(books):
-    return books.loc[:, "place_of_publication"].str.replace(
-        r".*London.*", "London", regex=True
+    return (
+        books.loc[:, "place_of_publication"]
+        .str.replace(r".*London.*", "London", regex=True)
+        .str.replace(r"-", " ", regex=True)
+        .str.replace(r".*Oxford.*", "Oxford", regex=True)
+        .str.replace(r".*Plymouth.*", "Plymouth", regex=True)
     )
 
 
@@ -78,6 +82,11 @@ books.loc[:, "place_of_publication"].str.contains("-").all()
 
 books.loc[
     books.loc[:, "place_of_publication"].str.contains("-"), "place_of_publication"
+]
+
+# %%
+books.loc[
+    books.loc[:, "place_of_publication"].str.contains("\["), "place_of_publication"
 ]
 
 # %%
