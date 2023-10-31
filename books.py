@@ -20,6 +20,25 @@ def read():
             ]
         )
         .set_index("id")
+        .assign(
+            date_of_publication=clean_date_of_publication,
+            place_of_publication=clean_place_of_publication,
+        )
+    )
+
+
+def clean_date_of_publication(books):
+    return pd.to_numeric(
+        books.loc[:, "date_of_publication"]
+        .str.extract(r"(\d{4})", expand=False)
+        .fillna(0),
+        downcast="unsigned",
+    )
+
+
+def clean_place_of_publication(books):
+    return books.loc[:, "place_of_publication"].str.replace(
+        r".*London.*", "London", regex=True
     )
 
 
@@ -35,7 +54,30 @@ books.loc[:, "date_of_publication"].str.extract(r"(\d{4})").fillna("0").sum()
 
 
 # %%
-pd.to_numeric(
-    books.loc[:, "date_of_publication"].str.extract(r"(\d{4})", expand=False).fillna(0),
-    downcast="unsigned",
-)
+
+
+def clean_date_of_publication(books):
+    pd.to_numeric(
+        books.loc[:, "date_of_publication"]
+        .str.extract(r"(\d{4})", expand=False)
+        .fillna(0),
+        downcast="unsigned",
+    )
+
+
+# %%
+books.loc[:, "place_of_publication"]
+
+# %%
+books.loc[:, "place_of_publication"].str.contains("-")
+
+# %%
+books.loc[:, "place_of_publication"].str.contains("-").all()
+
+# %%
+
+books.loc[
+    books.loc[:, "place_of_publication"].str.contains("-"), "place_of_publication"
+]
+
+# %%
