@@ -17,9 +17,9 @@ def read():
                 "engraver",
                 "issuance_type",
                 "shelfmarks",
-            ],
-            axis="columns",
+            ]
         )
+        .set_index("id")
     )
 
 
