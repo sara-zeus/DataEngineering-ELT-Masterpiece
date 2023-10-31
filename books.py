@@ -25,3 +25,17 @@ def read():
 
 books = read()
 # %%
+
+books.loc[:, "date_of_publication"].str.extract(r"(\d{4})").isna().sum()
+
+
+# %%
+
+books.loc[:, "date_of_publication"].str.extract(r"(\d{4})").fillna("0").sum()
+
+
+# %%
+pd.to_numeric(
+    books.loc[:, "date_of_publication"].str.extract(r"(\d{4})", expand=False).fillna(0),
+    downcast="unsigned",
+)
