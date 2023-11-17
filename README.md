@@ -41,15 +41,5 @@ The project is structured around the following major segments, inspired by the R
     - Analysis of the Books Dataset
     - Implementing Data Cleaning Techniques, including Dropping Columns, Managing Indices, and Text Cleaning
 
-## Contributors
 
-- Ian Currie: Python expert overseeing the project
-- Real Python team members: Aldren, Christopher, Kate, Martin, Tappan, Malay, Brad, and Joanna
 
-## Participant Comments
-
-- "Great course! Thanks so much for putting it together." - dlautz
-
----
-
-© 2012–2023 Real Python ⋅ [Privacy Policy](#) 
